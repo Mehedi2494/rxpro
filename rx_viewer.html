@@ -143,15 +143,21 @@ try{
   }
   if(!leftHtml) leftHtml='<div style="color:#ccc;font-size:11px;padding:8px 0">—</div>';
 
-  // MEDICINES
+  // MEDICINES — each entry is a string: "[Tag] Name Dose (generic) | freq | inst | duration"
   var meds=d.M||[];
-  var medsHtml=meds.length?meds.map(function(m){
-    var detail=[m.fr,m.ins,m.du].filter(Boolean).join('<span class="dots">........</span>');
+  var medsHtml=meds.length?meds.map(function(m,i){
+    var str=String(m);
+    // Extract tag [Tab] etc
+    var tag=''; var tagMatch=str.match(/^\[([^\]]+)\]\s*/);
+    if(tagMatch){tag=tagMatch[1];str=str.slice(tagMatch[0].length);}
+    // Split on first |
+    var pipeIdx=str.indexOf(' | ');
+    var namePart=pipeIdx>=0?str.slice(0,pipeIdx):str;
+    var detailPart=pipeIdx>=0?str.slice(pipeIdx+3).replace(/ \| /g,'<span class="dots">........</span>'):'';
     return '<div class="med-item">'
-      +(m.t?'<span class="med-tag">'+esc(m.t)+'</span>':'')
-      +'<div class="med-name">'+esc(m.n)+(m.do?' '+esc(m.do):'')
-      +(m.g?'<span class="med-generic">'+esc(m.g)+'</span>':'')+'</div>'
-      +(detail?'<div class="med-detail">'+detail+'</div>':'')
+      +(tag?'<span class="med-tag">'+esc(tag)+'</span>':'')
+      +'<div class="med-name">'+esc(namePart)+'</div>'
+      +(detailPart?'<div class="med-detail">'+detailPart+'</div>':'')
       +'</div>';
   }).join(''):'<div style="color:#aaa;font-size:11px;padding:4px 0">No medicines</div>';
 
