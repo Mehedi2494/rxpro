@@ -2,85 +2,111 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
 <title>RxPro Prescription</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@400;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;min-height:100vh;padding:12px}
-.page{max-width:720px;margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.12)}
-/* HEADER */
-.hdr{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 20px;gap:10px}
-.hdr-en{text-align:left}
-.hdr-bn{text-align:right;font-family:'Hind Siliguri',sans-serif}
-.hdr-logo{display:flex;flex-direction:column;align-items:center;gap:4px}
-.hdr-logo img{border-radius:50%;object-fit:contain;max-width:70px;max-height:70px}
-.dr-name{font-size:17px;font-weight:700;line-height:1.3}
-.dr-sub{font-size:11px;line-height:1.5;opacity:.9}
-.dr-reg{font-size:10px;margin-top:3px;opacity:.85}
-.spec-tag{font-size:10px;background:rgba(255,255,255,.18);border-radius:4px;padding:2px 8px;margin-top:4px;display:inline-block;text-align:center}
-/* PATIENT ROW */
-.pt-row{display:grid;grid-template-columns:2.2fr 1fr 1.2fr 1.6fr 1fr 0.9fr;border:1.5px solid var(--ac);border-radius:8px;margin:10px 18px;overflow:hidden}
-.pt-field{padding:6px 10px;border-right:1px solid rgba(0,0,0,.08)}
-.pt-field:last-child{border-right:none;background:rgba(0,0,0,.04);text-align:center}
-.pt-field label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#68a885;display:block;margin-bottom:2px}
-.pt-field span{font-size:12px;font-weight:600;color:#1a202c;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pt-field:first-child{border-left:3px solid var(--ac)}
-.pt-field:first-child span{font-size:13px;font-weight:700;white-space:normal}
-.rxno-span{font-family:'JetBrains Mono',monospace!important;font-weight:700;color:var(--hc)!important;letter-spacing:.5px}
-/* BODY */
-.body{display:flex;gap:0;padding:6px 18px 10px;min-height:300px}
-.col-left{width:36%;flex-shrink:0;padding-right:10px;border-right:1.5px dashed rgba(0,0,0,.12)}
-.col-right{flex:1;padding-left:12px}
-.sec{margin-bottom:9px;padding-bottom:8px;border-bottom:1px dashed #e2e8f0}
-.sec:last-child{border-bottom:none}
-.sec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding-bottom:4px;margin-bottom:5px;border-bottom:1.5px solid var(--ac);display:flex;align-items:center;gap:4px}
-.rx-sym{font-size:16px;font-weight:700;font-family:'Playfair Display',serif}
-.sec-body{font-size:11px;font-weight:600;line-height:1.7;color:#1a202c}
-/* MEDICINES */
-.med-item{margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #f0f4f8}
-.med-item:last-child{border-bottom:none;margin-bottom:0}
-.med-tag{display:inline-block;font-size:9px;font-weight:700;border-radius:3px;padding:1px 5px;margin-right:4px;background:rgba(0,0,0,.08);color:#444;vertical-align:middle}
-.med-name{font-size:13px;font-weight:700;color:#1a202c;line-height:1.3}
-.med-generic{font-size:10px;font-weight:400;color:#666;margin-left:4px}
-.med-detail{font-size:11px;color:#444;margin-top:2px;line-height:1.4}
-.dots{color:#bbb;margin:0 3px}
-/* FOOTER */
-.ftr{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;gap:10px}
-.ftr-clinic{flex:1}
-.ftr-clinic-label{font-size:10px;font-family:'Hind Siliguri',sans-serif;font-weight:600;margin-bottom:3px}
-.ftr-clinic-name{font-size:15px;font-weight:800;font-family:'Hind Siliguri',sans-serif;line-height:1.3}
-.ftr-clinic-addr{font-size:10px;opacity:.8;line-height:1.5}
-.ftr-qr{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
-.ftr-timing{flex:1;text-align:right;font-family:'Hind Siliguri',sans-serif}
-.ftr-timing h4{font-size:11px;font-weight:700;margin-bottom:3px}
-.ftr-timing p{font-size:11px;opacity:.85;line-height:1.5}
-/* PRINT */
-.print-btn{display:block;width:100%;text-align:center;padding:10px;font-size:13px;color:#1d6e3f;cursor:pointer;border:none;background:transparent;border-top:0.5px solid #e2e8f0;font-weight:500}
-@media print{body{background:#fff;padding:0}.page{box-shadow:none;border-radius:0}.print-btn{display:none}}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+body{background:#e8ecf0;font-family:'Segoe UI',Arial,sans-serif;padding:10px;font-size:11px}
+.page{max-width:720px;margin:0 auto;background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.15);display:flex;flex-direction:column;min-height:900px}
+
+/* ── HEADER ── */
+.rx-header-box{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:14px 20px;border-bottom:3px solid var(--ac);background:var(--hc);color:#fff}
+.rx-header-en{text-align:left}
+.rx-header-bn{text-align:right;font-family:'Hind Siliguri',sans-serif}
+.rx-header-logo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center}
+.rx-header-logo img{border-radius:50%;object-fit:contain;max-width:70px;max-height:70px}
+.rx-dr-name-en{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;line-height:1.15}
+.rx-dr-name-bn{font-family:'Hind Siliguri',sans-serif;font-size:16px;font-weight:700;line-height:1.15}
+.rx-dr-qual-en,.rx-dr-qual-bn{font-size:10px;margin-top:3px;line-height:1.3;opacity:.88}
+.rx-dr-qual-bn{font-family:'Hind Siliguri',sans-serif}
+.rx-dr-desig-en{font-size:10px;font-weight:600;margin-top:3px;line-height:1.3}
+.rx-dr-desig-bn{font-family:'Hind Siliguri',sans-serif;font-size:10px;font-weight:600;margin-top:3px;line-height:1.3}
+.rx-dr-dept-en{font-size:9.5px;margin-top:3px;line-height:1.35;opacity:.78}
+.rx-dr-dept-bn{font-family:'Hind Siliguri',sans-serif;font-size:9.5px;margin-top:3px;line-height:1.35;opacity:.78}
+.rx-dr-reg{font-size:9px;margin-top:4px;opacity:.65}
+.rx-logo-tagline{font-size:9px;font-family:'Hind Siliguri',sans-serif;text-align:center;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.18)}
+
+/* ── PATIENT ROW ── */
+.rx-body{padding:10px 20px 6px;flex:1}
+.rx-patient-row{display:grid;grid-template-columns:2.2fr 1fr 1.3fr 1.8fr 1.1fr 0.9fr;gap:0;border:1.5px solid var(--ac);border-radius:8px;margin-bottom:10px;overflow:hidden}
+.rx-patient-field{padding:7px 11px;border-right:1px solid rgba(0,0,0,.08);min-width:0}
+.rx-patient-field:last-child{border-right:none;background:rgba(0,0,0,.04);text-align:center}
+.rx-patient-field:first-child{border-left:3px solid var(--ac)}
+.rx-patient-field label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#68a885;display:block;margin-bottom:3px;white-space:nowrap}
+.rx-patient-field span{font-size:11.5px;font-weight:600;color:#1a202c;display:block;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.rx-patient-field:first-child span{font-size:13px;font-weight:700;white-space:normal}
+.rx-patient-field:last-child span{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11.5px;letter-spacing:.5px;color:var(--hc)}
+
+/* ── TWO COLUMN ── */
+.rx-two-col{display:flex;gap:0;min-height:420px}
+.rx-col-left{width:35%;flex-shrink:0;padding-right:10px;border-right:1.5px dashed rgba(0,0,0,.1)}
+.rx-col-right{flex:1;padding-left:10px}
+.rx-section{margin-bottom:9px;padding-bottom:9px;border-bottom:1px dashed #e2e8f0}
+.rx-section:last-child{border-bottom:none;margin-bottom:0}
+.rx-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding-bottom:4px;margin-bottom:5px;border-bottom:1.5px solid var(--ac);display:flex;align-items:center;gap:5px;color:var(--ac)}
+.rx-sym{font-size:14px;font-weight:700;font-family:'Playfair Display',serif}
+.rx-body-text{font-size:11px;font-weight:600;line-height:1.7;color:#1a202c}
+.rx-cc-label{font-weight:700;color:var(--ac)}
+
+/* ── MEDICINES ── */
+.rx-medicine-item{display:flex;align-items:flex-start;gap:6px;margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #f0f4f8}
+.rx-medicine-item:last-child{border-bottom:none;margin-bottom:0}
+.rx-type-tag{font-size:8px;padding:0 4px 0 0;color:#276749;font-weight:700;margin-right:2px}
+.rx-med-name{font-size:12px;font-weight:700;line-height:1.4;color:#1a202c}
+.rx-med-generic{font-size:9.5px;color:#718096;font-style:italic;margin-left:4px;font-weight:400}
+.rx-med-detail-line{font-size:9.5px;color:#4a5568;margin-top:2px;line-height:1.4}
+.rx-detail-dots{color:#a0aec0;margin:0 3px}
+.rx-followup{font-size:10px;font-weight:600;padding:5px 10px;border-radius:4px;background:#f0fff4;border:1px solid #9ae6b4;margin-top:8px;display:inline-flex;align-items:center;gap:5px;color:#276749}
+
+/* ── FOOTER ── */
+.rx-footer-fixed{background:var(--fc);padding:0 20px;flex-shrink:0}
+.rx-footer-tagline{font-size:10px;font-weight:600;padding:4px 20px;font-family:'Hind Siliguri',sans-serif;text-align:center;background:inherit}
+.rx-footer-main{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0}
+.rx-footer-clinic{flex:1;display:flex;align-items:center;gap:8px}
+.rx-footer-clinic-logo{height:44px;width:44px;border-radius:4px;object-fit:contain;flex-shrink:0;background:#fff;padding:1px}
+.rx-footer-clinic-text{display:flex;flex-direction:column;gap:1px}
+.rx-footer-clinic-label{font-size:9px;font-family:'Hind Siliguri',sans-serif;font-weight:600;margin-bottom:2px;color:var(--ft);opacity:.8}
+.rx-footer-clinic-name{font-size:14px;font-weight:800;font-family:'Hind Siliguri',sans-serif;line-height:1.3;color:#fff}
+.rx-footer-clinic-addr{font-size:9px;color:var(--ft);font-family:'Hind Siliguri',sans-serif;line-height:1.4}
+.rx-footer-clinic-serial{font-size:9px;color:#fbbf24;font-family:'Hind Siliguri',sans-serif;font-weight:600}
+.rx-footer-qr{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
+.rx-footer-qr-label{font-size:7px;color:var(--ft);opacity:.7;text-align:center}
+.rx-footer-timing{flex:1;text-align:right;font-family:'Hind Siliguri',sans-serif;display:flex;flex-direction:column;align-items:flex-end;justify-content:center}
+.rx-footer-timing h4{font-size:10px;font-weight:700;margin-bottom:3px;color:var(--ft)}
+.rx-footer-timing p{font-size:9px;margin-bottom:1px;color:var(--ft);line-height:1.5}
+
+.print-bar{text-align:center;padding:10px;border-top:1px solid #e2e8f0;background:#f8fafb}
+.print-btn{font-size:13px;color:#1d6e3f;cursor:pointer;border:1px solid #1d6e3f;border-radius:5px;padding:6px 18px;background:#fff;font-weight:500}
+.print-btn:hover{background:#f0fff4}
+
 @media(max-width:600px){
-  .pt-row{grid-template-columns:1fr 1fr;border-radius:6px}
-  .pt-field:nth-child(2n){border-right:none}
-  .pt-field:nth-child(n+3){border-top:1px solid rgba(0,0,0,.08)}
-  .pt-field:last-child{grid-column:1/-1;background:rgba(0,0,0,.04)}
-  .body{flex-direction:column}
-  .col-left{width:100%;border-right:none;border-bottom:1.5px dashed rgba(0,0,0,.12);padding-right:0;padding-bottom:10px;margin-bottom:10px}
-  .col-right{padding-left:0}
-  .hdr{grid-template-columns:1fr auto}
-  .hdr-bn{display:none}
-  .ftr{flex-wrap:wrap}
-  .ftr-timing{flex:100%;text-align:left;margin-top:6px}
+  .rx-patient-row{grid-template-columns:1fr 1fr}
+  .rx-patient-field:nth-child(2n){border-right:none}
+  .rx-patient-field:nth-child(1n+3){border-top:1px solid rgba(0,0,0,.06)}
+  .rx-patient-field:last-child{grid-column:1/-1}
+  .rx-two-col{flex-direction:column}
+  .rx-col-left{width:100%;border-right:none;border-bottom:1.5px dashed rgba(0,0,0,.1);padding-right:0;padding-bottom:10px;margin-bottom:10px}
+  .rx-col-right{padding-left:0}
+  .rx-header-box{grid-template-columns:1fr auto}
+  .rx-header-bn{display:none}
+  .rx-footer-main{flex-wrap:wrap}
+}
+@media print{
+  body{background:#fff;padding:0}
+  .page{box-shadow:none;border-radius:0;min-height:unset}
+  .print-bar{display:none}
 }
 </style>
 </head>
 <body>
 <div class="page" id="page">
-  <div style="text-align:center;padding:40px;color:#888" id="loading">Loading prescription...</div>
+  <div style="text-align:center;padding:60px;color:#888;font-size:15px" id="loading">Loading prescription...</div>
 </div>
 <script>
 (function(){
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
+function e(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function nl(s){return e(s).replace(/\n/g,'<br>')}
 
 try{
   var raw=window.location.hash.slice(1);
@@ -92,108 +118,129 @@ try{
   var fc=d.Fc||'#1d6e3f';
   var ft=d.Ft||'#d4edda';
 
-  var page=document.getElementById('page');
-  page.style.setProperty('--hc',hc);
-  page.style.setProperty('--ac',ac);
+  var pg=document.getElementById('page');
+  pg.style.cssText='--hc:'+hc+';--ac:'+ac+';--fc:'+fc+';--ft:'+ft+';max-width:720px;margin:0 auto;background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.15);display:flex;flex-direction:column;min-height:900px';
 
-  // HEADER
-  var hdrHtml='<div class="hdr" style="background:'+hc+';color:#fff">'
-    +'<div class="hdr-en">'
-    +'<div class="dr-name">'+esc(d.Dr)+'</div>'
-    +(d.Q?'<div class="dr-sub">'+esc(d.Q)+'</div>':'')
-    +(d.Dg?'<div class="dr-sub">'+esc(d.Dg)+'</div>':'')
-    +(d.Dp?'<div class="dr-sub">'+esc(d.Dp)+'</div>':'')
-    +'<div class="dr-reg">Reg: '+esc(d.Rg)+(d.Ph?' | '+esc(d.Ph):'')+'</div>'
-    +'</div>'
-    +'<div class="hdr-logo">'
-    +(d.Sp||d.SpB?'<div class="spec-tag" style="color:'+ft+'">'+esc(d.Sp||d.SpB)+'</div>':'')
-    +'</div>'
-    +'<div class="hdr-bn">'
-    +(d.DrB?'<div class="dr-name">'+esc(d.DrB)+'</div>':'')
-    +(d.QB?'<div class="dr-sub">'+esc(d.QB)+'</div>':'')
-    +(d.DgB?'<div class="dr-sub">'+esc(d.DgB)+'</div>':'')
-    +'</div>'
-    +'</div>';
+  /* HEADER */
+  var h='<div class="rx-header-box" style="background:'+hc+';border-bottom-color:'+ac+'">'
+   +'<div class="rx-header-en">'
+   +'<div class="rx-dr-name-en">'+e(d.Dr)+'</div>'
+   +(d.Q?'<div class="rx-dr-qual-en">'+e(d.Q)+'</div>':'')
+   +(d.Dg?'<div class="rx-dr-desig-en">'+e(d.Dg)+'</div>':'')
+   +(d.Dp?'<div class="rx-dr-dept-en">'+e(d.Dp)+'</div>':'')
+   +'<div class="rx-dr-reg">Reg: '+e(d.Rg)+(d.Ph?' | '+e(d.Ph):'')+'</div>'
+   +'</div>'
+   +'<div class="rx-header-logo">'
+   +(d.Sp?'<div class="rx-logo-tagline" style="color:'+ft+'">'+e(d.Sp)+'</div>':'')
+   +'</div>'
+   +'<div class="rx-header-bn">'
+   +(d.DrB?'<div class="rx-dr-name-bn">'+e(d.DrB)+'</div>':'')
+   +(d.QB?'<div class="rx-dr-qual-bn">'+e(d.QB)+'</div>':'')
+   +'</div>'
+   +'</div>';
 
-  // PATIENT ROW
-  var ptHtml='<div class="pt-row">'
-    +'<div class="pt-field"><label>Patient Name</label><span>'+esc(d.Pt)+'</span></div>'
-    +'<div class="pt-field"><label>Age / Sex</label><span>'+esc((d.Pa||'')+(d.Pg?' / '+d.Pg:''))+'</span></div>'
-    +'<div class="pt-field"><label>Phone</label><span>'+esc(d.Pp)+'</span></div>'
-    +'<div class="pt-field"><label>Address</label><span>'+esc(d.PAd)+'</span></div>'
-    +'<div class="pt-field"><label>Date</label><span>'+esc(d.Dt)+'</span></div>'
-    +'<div class="pt-field"><label>Rx No.</label><span class="rxno-span" style="color:'+hc+'">'+esc(d.Rx)+'</span></div>'
-    +'</div>';
+  /* PATIENT ROW */
+  var pt='<div class="rx-patient-row">'
+   +'<div class="rx-patient-field"><label>Patient Name</label><span>'+e(d.Pt||'—')+'</span></div>'
+   +'<div class="rx-patient-field"><label>Age / Sex</label><span>'+e((d.Pa||'—')+(d.Pg?' / '+d.Pg:''))+'</span></div>'
+   +'<div class="rx-patient-field"><label>Phone</label><span>'+e(d.Pp||'—')+'</span></div>'
+   +'<div class="rx-patient-field"><label>Address</label><span style="font-size:10px;white-space:normal">'+e(d.PAd||'—')+'</span></div>'
+   +'<div class="rx-patient-field"><label>Date</label><span>'+e(d.Dt)+'</span></div>'
+   +'<div class="rx-patient-field"><label>Rx No.</label><span style="font-family:\'JetBrains Mono\',monospace;font-weight:700;color:'+hc+'">'+e(d.Rx)+'</span></div>'
+   +'</div>';
 
-  // LEFT COL
-  var leftHtml='';
+  /* LEFT COL */
+  var lft='';
   if(d.CC||d.OE){
-    leftHtml+='<div class="sec"><div class="sec-title" style="color:'+ac+';border-bottom-color:'+ac+'">Vitals &amp; Examination</div>'
-      +(d.CC?'<div class="sec-body"><strong style="color:'+ac+'">C/C:</strong> '+esc(d.CC)+'</div>':'')
-      +(d.OE?'<div class="sec-body"><strong style="color:'+ac+'">O/E:</strong> '+esc(d.OE)+'</div>':'')
-      +'</div>';
+    lft+='<div class="rx-section"><div class="rx-section-title" style="color:'+ac+';border-bottom-color:'+ac+'">Vitals &amp; Examination</div>'
+     +(d.CC?'<div class="rx-body-text"><span class="rx-cc-label" style="color:'+ac+'">C/C:</span> '+nl(d.CC)+'</div>':'')
+     +(d.OE?'<div class="rx-body-text"><span class="rx-cc-label" style="color:'+ac+'">O/E:</span> '+nl(d.OE)+'</div>':'')
+     +'</div>';
   }
   if(d.Inv&&d.Inv.length){
-    leftHtml+='<div class="sec"><div class="sec-title" style="color:'+ac+';border-bottom-color:'+ac+'">Investigations</div>'
-      +'<div class="sec-body">'+d.Inv.map(function(x){return esc(x)}).join('<br>')+'</div></div>';
+    lft+='<div class="rx-section"><div class="rx-section-title" style="color:'+ac+';border-bottom-color:'+ac+'">Investigations</div>'
+     +'<div class="rx-body-text">'+d.Inv.map(function(x){return e(x)}).join('<br>')+'</div></div>';
   }
   if(d.Dx&&d.Dx.length){
-    leftHtml+='<div class="sec"><div class="sec-title" style="color:'+ac+';border-bottom-color:'+ac+'">Diagnosis</div>'
-      +'<div class="sec-body">'+d.Dx.map(function(x){return esc(x)}).join('<br>')+'</div></div>';
+    lft+='<div class="rx-section"><div class="rx-section-title" style="color:'+ac+';border-bottom-color:'+ac+'">Diagnosis</div>'
+     +'<div class="rx-body-text">'+d.Dx.map(function(x){return e(x)}).join('<br>')+'</div></div>';
   }
-  if(!leftHtml) leftHtml='<div style="color:#ccc;font-size:11px;padding:8px 0">—</div>';
+  if(!lft) lft='<div style="color:#ccc;font-size:10px;padding:4px 0">—</div>';
 
-  // MEDICINES — each entry is a string: "[Tag] Name Dose (generic) | freq | inst | duration"
+  /* MEDICINES */
   var meds=d.M||[];
-  var medsHtml=meds.length?meds.map(function(m,i){
+  var mh=meds.length?meds.map(function(m){
     var str=String(m);
-    // Extract tag [Tab] etc
-    var tag=''; var tagMatch=str.match(/^\[([^\]]+)\]\s*/);
-    if(tagMatch){tag=tagMatch[1];str=str.slice(tagMatch[0].length);}
-    // Split on first |
-    var pipeIdx=str.indexOf(' | ');
-    var namePart=pipeIdx>=0?str.slice(0,pipeIdx):str;
-    var detailPart=pipeIdx>=0?str.slice(pipeIdx+3).replace(/ \| /g,'<span class="dots">........</span>'):'';
-    return '<div class="med-item">'
-      +(tag?'<span class="med-tag">'+esc(tag)+'</span>':'')
-      +'<div class="med-name">'+esc(namePart)+'</div>'
-      +(detailPart?'<div class="med-detail">'+detailPart+'</div>':'')
-      +'</div>';
-  }).join(''):'<div style="color:#aaa;font-size:11px;padding:4px 0">No medicines</div>';
+    var tag='';var tm=str.match(/^\[([^\]]+)\]\s*/);
+    if(tm){tag=tm[1];str=str.slice(tm[0].length);}
+    var pi=str.indexOf(' | ');
+    var nm=pi>=0?str.slice(0,pi):str;
+    var det=pi>=0?str.slice(pi+3):'';
+    // parse name: may have (generic) at end
+    var gen='';var gm=nm.match(/\(([^)]+)\)$/);
+    if(gm){gen=gm[1];nm=nm.slice(0,nm.length-gm[0].length).trim();}
+    // detail: split on | for dots
+    var detParts=det?det.split(' | '):[];
+    var detHtml=detParts.map(function(p,i){return(i?'<span class="rx-detail-dots">.........</span>':'')+e(p)}).join('');
+    return '<div class="rx-medicine-item">'
+     +(tag?'<span class="rx-type-tag">'+e(tag)+'</span>':'')
+     +'<div><div class="rx-med-name">'+e(nm)+(gen?'<span class="rx-med-generic">'+e(gen)+'</span>':'')+'</div>'
+     +(detHtml?'<div class="rx-med-detail-line">'+detHtml+'</div>':'')
+     +'</div></div>';
+  }).join(''):'<div style="color:#aaa;font-size:10px;padding:4px">No medicines added</div>';
 
-  var rightHtml='<div class="sec"><div class="sec-title" style="color:'+ac+';border-bottom-color:'+ac+'">'
-    +'<span class="rx-sym">℞</span> Prescription</div>'+medsHtml+'</div>';
-  if(d.Av) rightHtml+='<div class="sec"><div class="sec-title" style="color:'+ac+';border-bottom-color:'+ac+'">Advice</div><div class="sec-body">'+esc(d.Av)+'</div></div>';
-  if(d.Fu) rightHtml+='<div style="font-size:11px;font-weight:600;color:'+hc+'">Follow-up: '+esc(d.Fu)+'</div>';
-
-  // FOOTER
-  var ftrHtml='<div class="ftr" style="background:'+fc+';color:'+ft+'">'
-    +'<div class="ftr-clinic">'
-    +'<div class="ftr-clinic-label" style="color:'+ft+'">চেম্বারঃ</div>'
-    +'<div class="ftr-clinic-name" style="color:#fff">'+esc(d.Cl)+'</div>'
-    +(d.Ca?'<div class="ftr-clinic-addr" style="color:'+ft+'">'+esc(d.Ca)+'</div>':'')
-    +(d.Cs?'<div class="ftr-clinic-addr" style="color:#fbbf24;font-weight:600">সিরিয়ালঃ '+esc(d.Cs)+'</div>':'')
-    +(d.Ce?'<div class="ftr-clinic-addr" style="color:'+ft+'">জরুরিঃ '+esc(d.Ce)+'</div>':'')
-    +'</div>'
-    +'<div class="ftr-qr"><div id="qr-box"></div><div style="font-size:8px;opacity:.7;margin-top:2px">Verified Rx</div></div>'
-    +(d.Ct?'<div class="ftr-timing"><h4 style="color:#fff">রোগী দেখার সময় :</h4><p style="color:'+ft+'">'+esc(d.Ct)+'</p></div>':'<div style="flex:1"></div>')
-    +'</div>';
-
-  page.innerHTML=hdrHtml+ptHtml
-    +'<div class="body"><div class="col-left">'+leftHtml+'</div><div class="col-right">'+rightHtml+'</div></div>'
-    +ftrHtml
-    +'<button class="print-btn" onclick="window.print()">&#128438; Print this prescription</button>';
-
-  // Generate QR of this page URL for re-sharing
-  var qrBox=document.getElementById('qr-box');
-  if(qrBox&&window.QRCode){
-    new QRCode(qrBox,{text:window.location.href,width:52,height:52,colorDark:'#fff',colorLight:fc,correctLevel:QRCode.CorrectLevel.M});
-    setTimeout(function(){var el=qrBox.querySelector('img,canvas');if(el){el.style.display='block';el.style.maxWidth='52px';}},100);
+  /* RIGHT COL */
+  var rgt='<div class="rx-section"><div class="rx-section-title" style="color:'+ac+';border-bottom-color:'+ac+'">'
+   +'<span class="rx-sym">&#8478;</span> Prescription</div>'+mh+'</div>';
+  if(d.Av){
+    rgt+='<div class="rx-section"><div class="rx-section-title" style="color:'+ac+';border-bottom-color:'+ac+'">Advice</div>'
+     +'<div class="rx-body-text" style="font-weight:400">'+nl(d.Av)+'</div></div>';
+  }
+  if(d.Fu){
+    rgt+='<div class="rx-followup" style="border-color:'+ac+';color:'+hc+'">&#128336; '+e(d.Fu)+'</div>';
   }
 
-}catch(e){
-  document.getElementById('page').innerHTML='<div style="text-align:center;padding:50px 24px">'
-    +'<div style="font-size:18px;font-weight:600;color:#c53030;margin-bottom:8px">No prescription data</div>'
+  /* FOOTER */
+  var ftr='<div class="rx-footer-fixed" style="background:'+fc+'">'
+   +'<div class="rx-footer-main">'
+   +'<div class="rx-footer-clinic">'
+   +'<div class="rx-footer-clinic-text">'
+   +'<div class="rx-footer-clinic-label" style="color:'+ft+'">চেম্বারঃ</div>'
+   +'<div class="rx-footer-clinic-name" style="color:#fff">'+e(d.Cl)+'</div>'
+   +(d.Ca?'<div class="rx-footer-clinic-addr" style="color:'+ft+'">'+e(d.Ca)+'</div>':'')
+   +(d.Cs?'<div class="rx-footer-clinic-serial">সিরিয়ালের জন্য হটলাইনঃ '+e(d.Cs)+'</div>':'')
+   +(d.Ce?'<div class="rx-footer-clinic-addr" style="color:'+ft+'">জরুরিঃ '+e(d.Ce)+'</div>':'')
+   +'</div></div>'
+   +'<div class="rx-footer-qr"><div id="fqr"></div><div class="rx-footer-qr-label" style="color:'+ft+'">Scan for full prescription</div></div>'
+   +(d.Ct?'<div class="rx-footer-timing"><h4 style="color:'+ft+'">রোগী দেখার সময় :</h4><p style="color:'+ft+'">'+nl(d.Ct)+'</p></div>':'<div style="flex:1"></div>')
+   +'</div></div>';
+
+  pg.innerHTML=h+pt
+   +'<div class="rx-body"><div class="rx-two-col">'
+   +'<div class="rx-col-left">'+lft+'</div>'
+   +'<div style="border-left:1.5px dashed rgba(0,0,0,.1);margin:0 0px;flex-shrink:0"></div>'
+   +'<div class="rx-col-right">'+rgt+'</div>'
+   +'</div></div>'
+   +ftr
+   +'<div class="print-bar"><button class="print-btn" onclick="window.print()">&#128438; Print this prescription</button></div>';
+
+  /* QR in footer pointing back to this same URL */
+  setTimeout(function(){
+    var qb=document.getElementById('fqr');
+    if(qb&&window.QRCode){
+      new QRCode(qb,{text:window.location.href,width:50,height:50,
+        colorDark:'#fff',colorLight:fc,correctLevel:QRCode.CorrectLevel.M});
+      setTimeout(function(){
+        var el=qb.querySelector('img,canvas');
+        if(el){el.style.cssText='display:block;width:50px;height:50px;';}
+      },200);
+    }
+  },600);
+
+}catch(ex){
+  document.getElementById('page').innerHTML=
+    '<div style="text-align:center;padding:60px 24px">'
+    +'<div style="font-size:20px;font-weight:700;color:#c53030;margin-bottom:10px">No prescription data</div>'
     +'<div style="font-size:13px;color:#888">Scan a valid RxPro QR code to view a prescription.</div>'
     +'</div>';
 }
